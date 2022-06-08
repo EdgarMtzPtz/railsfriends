@@ -1,0 +1,54 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Name of the user</h5>
+    <p class="card-text">when this profile was created... How many total friends it has... Add more description about the profile in the future</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Inset current email.. in the future
+      <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"E.g. Edgar.Martinez@mail.com" %>
+    </div>
+ </li>
+    <li class="list-group-item">Edith pasword
+           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"E.g. ********" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"E.g. ********" %>
+  </div>
+
+
+    </li>
+    <li class="list-group-item"> 
+
+            <div class="field form-group">
+              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+              <%= f.password_field :current_password, autocomplete: "current-password" , class:"form-control", placeholder:"E.g. ********" %>
+            </div>
+
+    </li>
+  </ul>
+  <div class="card-body">
+    <%= f.submit "Update",class: 'btn btn-danger' %>
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,class: 'btn btn-secondary' %>
+ 
+<% end %>
